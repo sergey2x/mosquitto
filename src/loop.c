@@ -56,6 +56,16 @@ extern int run;
 extern int g_clients_expired;
 #endif
 
+#ifndef pollfd
+typedef struct pollfd {
+  SOCKET fd;
+  short  events;
+  short  revents;
+} WSAPOLLFD;
+#endif
+
+#define POLLIN (POLLRDNORM|POLLRDBAND)
+
 static void loop_handle_reads_writes(struct mosquitto_db *db, struct pollfd *pollfds);
 
 #ifdef WITH_WEBSOCKETS

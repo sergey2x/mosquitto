@@ -46,6 +46,10 @@ Contributors:
 #include <sys/socket.h>
 #endif
 
+#ifndef IPV6_V6ONLY
+#define IPV6_V6ONLY 0
+#endif
+
 #include <mosquitto_broker.h>
 #include <mqtt3_protocol.h>
 #include <memory_mosq.h>

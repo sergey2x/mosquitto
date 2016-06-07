@@ -50,6 +50,10 @@ Contributors:
 #include <netinet/in.h>
 #endif
 
+#ifndef AI_ADDRCONFIG
+#define AI_ADDRCONFIG 0
+#endif
+
 #ifdef WITH_TLS
 #include <openssl/conf.h>
 #include <openssl/engine.h>
@@ -344,8 +348,8 @@ int _mosquitto_try_connect(struct mosquitto *mosq, const char *host, uint16_t po
 #ifdef WIN32
 		errno = WSAGetLastError();
 #endif
-		if(rc == 0 || errno == EINPROGRESS || errno == COMPAT_EWOULDBLOCK){
-			if(rc < 0 && (errno == EINPROGRESS || errno == COMPAT_EWOULDBLOCK)){
+		if(rc == 0 || errno == COMPAT_EINPROGRESS || errno == COMPAT_EWOULDBLOCK){
+			if(rc < 0 && (errno == COMPAT_EINPROGRESS || errno == COMPAT_EWOULDBLOCK)){
 				rc = MOSQ_ERR_CONN_PENDING;
 			}
 
@@ -1150,7 +1154,7 @@ int _mosquitto_socketpair(mosq_sock_t *pairR, mosq_sock_t *pairW)
 #ifdef WIN32
 			errno = WSAGetLastError();
 #endif
-			if(errno != EINPROGRESS && errno != COMPAT_EWOULDBLOCK){
+			if(errno != COMPAT_EINPROGRESS && errno != COMPAT_EWOULDBLOCK){
 				COMPAT_CLOSE(spR);
 				COMPAT_CLOSE(listensock);
 				continue;
@@ -1161,7 +1165,7 @@ int _mosquitto_socketpair(mosq_sock_t *pairR, mosq_sock_t *pairW)
 #ifdef WIN32
 			errno = WSAGetLastError();
 #endif
-			if(errno != EINPROGRESS && errno != COMPAT_EWOULDBLOCK){
+			if(errno != COMPAT_EINPROGRESS && errno != COMPAT_EWOULDBLOCK){
 				COMPAT_CLOSE(spR);
 				COMPAT_CLOSE(listensock);
 				continue;

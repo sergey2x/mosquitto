@@ -17,7 +17,7 @@ Contributors:
 #ifdef WITH_SRV
 #  include <ares.h>
 
-#  include <arpa/nameser.h>
+#  include <nameser.h>
 #  include <stdio.h>
 #  include <string.h>
 #endif

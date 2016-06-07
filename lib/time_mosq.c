@@ -30,6 +30,10 @@ Contributors:
 #include "mosquitto.h"
 #include "time_mosq.h"
 
+#ifndef GetTickCount64
+#define GetTickCount64 GetTickCount
+#endif
+
 #ifdef WIN32
 static bool tick64 = false;
 

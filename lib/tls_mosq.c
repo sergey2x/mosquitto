@@ -115,8 +115,8 @@ int _mosquitto_verify_certificate_hostname(X509 *cert, const char *hostname)
 	int ipv4_ok;
 
 #ifdef WIN32
-	ipv6_ok = InetPton(AF_INET6, hostname, &ipv6_addr);
-	ipv4_ok = InetPton(AF_INET, hostname, &ipv4_addr);
+	ipv6_ok = 0;//InetPton(AF_INET6, hostname, &ipv6_addr);
+	ipv4_ok = 0;//InetPton(AF_INET, hostname, &ipv4_addr);
 #else
 	ipv6_ok = inet_pton(AF_INET6, hostname, &ipv6_addr);
 	ipv4_ok = inet_pton(AF_INET, hostname, &ipv4_addr);

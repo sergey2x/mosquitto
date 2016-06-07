@@ -25,5 +25,6 @@
 #define uthash_free(ptr,sz) _mosquitto_free(ptr)
 
 #ifndef EPROTO
-#  define EPROTO ECONNABORTED
+//#  define EPROTO ECONNABORTED
+#  define EPROTO WSAECONNABORTED
 #endif

@@ -25,6 +25,9 @@ Contributors:
 #else
 #include <winsock2.h>
 #include <ws2tcpip.h>
+#ifndef ENOTCONN
+#define ENOTCONN WSAENOTCONN
+#endif
 #endif
 
 #include <config.h>

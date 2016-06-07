@@ -39,6 +39,10 @@ Contributors:
 #  include <sys/syslog.h>
 #endif
 
+#ifndef AI_ADDRCONFIG
+#define AI_ADDRCONFIG 0
+#endif
+
 #include <mosquitto_broker.h>
 #include <memory_mosq.h>
 #include "tls_mosq.h"
